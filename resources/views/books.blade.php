@@ -9,15 +9,22 @@
     <h2>Genres</h2>
     <ul>
         @foreach($genres as $genre)
-            <li>{{ $genre['name'] }}</li>
+            <li>{{ $genre->name }}</li>
         @endforeach
     </ul>
 
     <h2>Authors</h2>
     <ul>
         @foreach($authors as $author)
-            <li>{{ $author['name'] }}</li>
+            <li>{{ $author->name }}</li>
         @endforeach
+    </ul>
+
+    <h2>Book List</h2>
+    <ul>
+    @foreach($books as $book)
+        <li>{{ $book->title }} - {{ $book->author->name }}</li>
+    @endforeach
     </ul>
 </body>
 </html>

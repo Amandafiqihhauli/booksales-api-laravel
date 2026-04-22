@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Genre;
 use App\Models\Author;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -12,7 +13,8 @@ class BookController extends Controller
     {
         $genres = Genre::all();
         $authors = Author::all();
-
-        return view('books', compact('genres', 'authors'));
+        $books = Book::with('author')->get();
+        
+        return view('books', compact('genres', 'authors', 'books'));
     }
 }

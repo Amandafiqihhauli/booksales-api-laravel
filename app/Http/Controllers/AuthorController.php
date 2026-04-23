@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Author;
 
-class BookController extends Controller
+class AuthorController extends Controller
 {
     public function index()
     {
-        $books = Book::with('author')->get();
+        $authors = Author::with('books')->get();
 
         return response()->json([
             'status' => 'success',
-            'data' => $books
+            'data' => $authors
         ]);
     }
 }

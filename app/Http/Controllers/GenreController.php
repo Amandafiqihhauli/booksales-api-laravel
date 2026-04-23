@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Genre;
 
-class BookController extends Controller
+class GenreController extends Controller
 {
     public function index()
     {
-        $books = Book::with('author')->get();
+        $genres = Genre::all();
 
         return response()->json([
             'status' => 'success',
-            'data' => $books
+            'data' => $genres
         ]);
     }
 }

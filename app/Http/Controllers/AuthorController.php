@@ -34,4 +34,58 @@ class AuthorController extends Controller
             'data' => $author
         ], 201);
     }
+
+    // menampilkan penulis berdasarkan id
+    public function show($id)
+    {
+        $author = Author::find($id);
+
+        if (!$author) {
+            return response()->json([
+                'message' => 'Author not found'
+            ], 404);
+        }
+
+        return response()->json($author);
+    }
+
+    // mengupdate penulis berdasarkan id
+    public function update(Request $request, $id)
+    {
+        $author = Author::find($id);
+
+        if (!$author) {
+            return response()->json([
+                'message' => 'Author not found'
+            ], 404);
+        }
+
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $author->update([
+            'name' => $request->name
+        ]);
+
+        return response()->json($author);
+    }
+
+    // menghapus penulis berdasarkan id
+    public function destroy($id)
+    {
+        $author = Author::find($id);
+
+        if (!$author) {
+            return response()->json([
+                'message' => 'Author not found'
+            ], 404);
+        }
+
+        $author->delete();
+
+        return response()->json([
+            'message' => 'Author deleted successfully'
+        ]);
+    }
 }

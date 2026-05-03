@@ -20,7 +20,11 @@ Route::get('/books', [BookController::class, 'index']);
 Route::get('/books/{id}', [BookController::class, 'show']);
 
 // Admin routes for managing authors, genres, and books
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::get('/authors', [AuthorController::class, 'index']);
+Route::get('/genres', [GenreController::class, 'index']);
+Route::get('/books', [BookController::class, 'index']);
+
+Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::post('/authors', [AuthorController::class, 'store']);
     Route::put('/authors/{id}', [AuthorController::class, 'update']);
     Route::delete('/authors/{id}', [AuthorController::class, 'destroy']);
@@ -35,14 +39,18 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 // Transaction routes
+Route::get('/transactions/{id}', [TransactionController::class, 'show']);
+
 Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
     Route::post('/transactions', [TransactionController::class, 'store']);
     Route::put('/transactions/{id}', [TransactionController::class, 'update']);
-    Route::get('/transactions/{id}', [TransactionController::class, 'show']);
+
 });
 
 // Admin can view all transactions and delete them, but cannot create or update transactions
+Route::get('/transactions', [TransactionController::class, 'index']);
+
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
-    Route::get('/transactions', [TransactionController::class, 'index']);
     Route::delete('/transactions/{id}', [TransactionController::class, 'destroy']);
 });
+

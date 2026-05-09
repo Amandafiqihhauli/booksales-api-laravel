@@ -38,21 +38,18 @@ class AuthorController extends Controller
     // menampilkan penulis berdasarkan id
     public function show($id)
     {
-        $author = Author::find($id);
+        $author = Author::findOrFail($id);
 
-        if (!$author) {
-            return response()->json([
-                'message' => 'Author not found'
-            ], 404);
-        }
-
-        return response()->json($author);
+        return response()->json([
+            'status' => 'success',
+            'data' => $author
+        ]);
     }
 
     // mengupdate penulis berdasarkan id
     public function update(Request $request, $id)
     {
-        $author = Author::find($id);
+        $author = Author::findOrFail($id);
 
         if (!$author) {
             return response()->json([

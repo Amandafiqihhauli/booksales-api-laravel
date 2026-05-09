@@ -24,7 +24,8 @@ Route::get('/authors', [AuthorController::class, 'index']);
 Route::get('/genres', [GenreController::class, 'index']);
 Route::get('/books', [BookController::class, 'index']);
 
-Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+Route::delete('/books/{id}', [BookController::class, 'destroy']);
+
     Route::post('/authors', [AuthorController::class, 'store']);
     Route::put('/authors/{id}', [AuthorController::class, 'update']);
     Route::delete('/authors/{id}', [AuthorController::class, 'destroy']);
@@ -35,8 +36,6 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 
     Route::post('/books', [BookController::class, 'store']);
     Route::put('/books/{id}', [BookController::class, 'update']);
-    Route::delete('/books/{id}', [BookController::class, 'destroy']);
-});
 
 // Transaction routes
 Route::get('/transactions/{id}', [TransactionController::class, 'show']);

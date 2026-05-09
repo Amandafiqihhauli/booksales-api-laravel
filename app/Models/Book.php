@@ -12,12 +12,13 @@ class Book extends Model
     'genre_id',
     'price',
     'stock',
+    'description',
     'cover',
     ];
 
 
-
-        public function genre()
+    
+    public function genre()
     {
         return $this->belongsTo(Genre::class);
     }

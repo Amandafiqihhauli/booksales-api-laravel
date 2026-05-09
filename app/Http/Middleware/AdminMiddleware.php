@@ -13,13 +13,21 @@ class AdminMiddleware
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    // public function handle(Request $request, Closure $next): Response
+    // {
+    //     if (!request()->user() || request()->user()->role !== 'admin') {
+    //         return response()->json([
+    //             'message' => 'Access denied. Admin only.'
+    //         ], 403);
+    //     }
+
+    //     return $next($request);
+    // }
+
+
+    public function handle($request, Closure $next)
     {
-        if (!request()->user() || request()->user()->role !== 'admin') {
-            return response()->json([
-                'message' => 'Access denied. Admin only.'
-            ], 403);
-        }
+        dd($request->user());
 
         return $next($request);
     }

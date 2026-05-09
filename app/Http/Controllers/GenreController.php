@@ -37,21 +37,18 @@ class GenreController extends Controller
     // menampilkan genre berdasarkan id
     public function show($id)
     {
-        $genre = Genre::find($id);
+        $genre = Genre::findOrFail($id);
 
-        if (!$genre) {
-            return response()->json([
-                'message' => 'Genre not found'
-            ], 404);
-        }
-
-        return response()->json($genre);
+        return response()->json([
+            'status' => 'success',
+            'data' => $genre
+        ]);
     }
 
     // mengupdate genre berdasarkan id
     public function update(Request $request, $id)
     {
-        $genre = Genre::find($id);
+        $genre = Genre::findOrFail($id);
 
         if (!$genre) {
             return response()->json([

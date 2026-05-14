@@ -7,6 +7,9 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\AuthController;
 
+// register route for user registration
+Route::post('/register', [AuthController::class, 'register']);
+
 // User authentication routes
 Route::post('/login', [AuthController::class, 'login']);
 

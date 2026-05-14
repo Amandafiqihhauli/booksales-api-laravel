@@ -85,4 +85,5 @@ class AuthorController extends Controller
             'message' => 'Author deleted successfully'
         ]);
     }
+
 }

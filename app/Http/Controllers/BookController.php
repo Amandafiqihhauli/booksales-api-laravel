@@ -10,7 +10,7 @@ class BookController extends Controller
 {
     public function show($id)
     {
-        $book = Book::findOrFail($id);
+        $book = Book::with(['author', 'genre'])->findOrFail($id);
 
         return response()->json([
             'status' => 'success',
